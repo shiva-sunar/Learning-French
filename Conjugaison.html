@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>French Conjugation Practice</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f7ff;
+            color: #33475b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+        h2 { color: #5d9cec; margin-bottom: 1.5rem; }
+        .prompt { font-size: 1.2rem; margin-bottom: 1rem; font-weight: bold; }
+        input {
+            width: 80%;
+            padding: 10px;
+            border: 2px solid #bcdffb;
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        input:focus { border-color: #5d9cec; }
+        .feedback {
+            margin-top: 1rem;
+            height: 1.5rem;
+            font-weight: bold;
+        }
+        .correct { color: #2ecc71; }
+        .incorrect { color: #e74c3c; }
+        .hint { font-size: 0.9rem; color: #7f8c8d; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Conjugaison</h2>
+    <div id="quiz-area">
+        <div class="prompt" id="prompt-text">Loading...</div>
+            <input type="text" id="answer-input" autocomplete="off" autofocus>
+        <div class="feedback" id="feedback-text"></div>
+    </div>
+    <div class="hint">Press Enter to check or continue</div>
+</div>
+
+<script>
+    // The CSV data provided in the prompt
+    const csvData = `verbe,tense,person,answer
+avoir,Indicatif,je,ai
+avoir,Indicatif,tu,as
+avoir,Indicatif,il,a
+avoir,Indicatif,nous,avons
+avoir,Indicatif,vous,avez
+avoir,Indicatif,ils,ont
+avoir,Passé composé,j',ai eu
+avoir,Passé composé,tu,as eu
+avoir,Passé composé,il,a eu
+avoir,Passé composé,nous,avons eu
+avoir,Passé composé,vous,avez eu
+avoir,Passé composé,ils,ont eu
+avoir,Imparfait,j',avais
+avoir,Imparfait,tu,avais
+avoir,Imparfait,il,avait
+avoir,Imparfait,nous,avions
+avoir,Imparfait,vous,aviez
+avoir,Imparfait,ils,avaient
+avoir,Futur simple,j',aurai
+avoir,Futur simple,tu,auras
+avoir,Futur simple,il,aura
+avoir,Futur simple,nous,aurons
+avoir,Futur simple,vous,aurez
+avoir,Futur simple,ils,auront
+être,Indicatif,je,suis
+être,Indicatif,tu,es
+être,Indicatif,il,est
+être,Indicatif,nous,sommes
+être,Indicatif,vous,êtes
+être,Indicatif,ils,sont
+être,Imparfait,j',étais
+être,Imparfait,tu,étais
+être,Imparfait,il,était
+être,Imparfait,nous,étions
+être,Imparfait,vous,étiez
+être,Imparfait,ils,étaient`;
+
+    let questions = [];
+    let currentIndex = 0;
+    let showingFeedback = false;
+    let currentQ = null;
+
+    // Parse CSV into objects
+    function init() {
+        const lines = csvData.split('\n');
+        for (let i = 1; i < lines.length; i++) {
+            const [v, t, p, a] = lines[i].split(',');
+            if(v) questions.push({ v, t, p, a: a.trim() });
+        }
+        shuffle(questions);
+        nextQuestion();
+    }
+
+    function shuffle(array) {
+        array.sort(() => Math.random() - 0.5);
+    }
+
+    const promptEl = document.getElementById('prompt-text');
+    const inputEl = document.getElementById('answer-input');
+    const feedbackEl = document.getElementById('feedback-text');
+
+    function nextQuestion() {
+        if (questions.length === 0) {
+            promptEl.innerText = "Session Finished!";
+            inputEl.style.display = "none";
+            return;
+        }
+        currentQ = questions[0];
+        promptEl.innerText = `${currentQ.t} \n ${currentQ.p} ${currentQ.v}`;
+        inputEl.value = "";//`${currentQ.p} `;
+        feedbackEl.innerText = "";
+        showingFeedback = false;
+    }
+
+    inputEl.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            if (!showingFeedback) {
+                checkAnswer();
+            } else {
+                nextQuestion();
+            }
+        }
+    });
+
+    function checkAnswer() {
+        const userAns = inputEl.value.trim().toLowerCase();
+        const correctAns = currentQ.p.toLowerCase() + " " + currentQ.a.toLowerCase();
+
+        if (userAns === correctAns) {
+            feedbackEl.innerText = "Correct! ✅";
+            feedbackEl.className = "feedback correct";
+            // Remove from list if correct
+            questions.shift();
+        } else {
+            feedbackEl.innerText = `Incorrect. Correct: ${currentQ.a}`;
+            feedbackEl.className = "feedback incorrect";
+            // Move to a few positions later (index 3 or end)
+            const missed = questions.shift();
+            const newPos = Math.min(questions.length, 3);
+            questions.splice(newPos, 0, missed);
+        }
+        showingFeedback = true;
+    }
+
+    init();
+</script>
+
+</body>
+</html>

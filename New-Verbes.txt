@@ -1,0 +1,91 @@
+Abaisser,Lower
+Abattre,Tear down
+Accrocher,Hang
+Achever,Finish
+Agacer,Annoy
+Aménager,Arrange
+Apercevoir,Perceive
+Arracher,Tear off
+Atteindre,Reach
+Balancer,Swing
+Bâtir ,Build
+Bouillir,Boil
+Chuchoter,Whisper
+Comparaître,Appear
+Confondre,Confound
+Contraindre,Constrain
+Convenir,Agree
+Coudre,Sew
+Craindre,Fear
+Cueillir,Pick
+Défaire,Undo
+Dégager,Clear
+Demeurer,Stay
+Dépêcher,Hurry
+Dépenser,Spend
+Déplaire,Displease
+Dévêtir,Undress
+Échouer,Fail
+Égayer,Cheer up
+Élire,Elect
+Enduire,Coat
+Enfuir,Flee
+Enlever,Remove
+Entreprendre,Undertake
+Entretenir,Maintain
+Épeler,Spell
+Essuyer,Wipe
+Éteindre,Extinguish
+Étendre,Extend
+Exiger,Demand
+Fier,Proud
+Fonder,Found
+Fondre,Melt
+Fouiller,Search
+Fuir,Flee
+Guérir,Cure
+Haïr,Hate
+Jouir,Enjoy
+Klaxonner,Honk
+Loger,Lodging ier
+Nier,Deny
+Parcourir,Browse
+Parvenir,Reach
+Peigner,Comb
+Pendre,Hang
+Peser,Weigh
+Plaindre,Complain
+Plaisanter,Joke
+Puer,Smell
+Raconter,Tell
+Ranger,Tidy up
+Reconduire,Conduct again
+Recourir,Resort
+Recueillir,Collect
+Rédiger,Write
+Redire,Repeat
+Relever,Pick up
+Renvoyer,Send back
+Repasser,Iron
+Reprendre,Take back
+Revêtir,Re-clothe
+Salir,Soil
+Secouer,Shake
+Secourir,Rescue
+Séjourner,Stay
+Siffler,Whistle
+Songer,Think
+Souscrire,Subscribe
+Subir,Endure
+Subvenir,Provide
+Sucer,Suck
+Survenir,Occur
+Tendre,Stretch out
+Tondre,Mow
+Tordre,Twist
+Tousser,Cough
+Trahir,Betray
+Tromper,Deceive
+User,Use
+Verser,Pour
+Viser,Aim
